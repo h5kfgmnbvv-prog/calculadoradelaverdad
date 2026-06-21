@@ -92,7 +92,7 @@
       align-items: start;
     }
 
-    aside, .workspace, .card, .summary, .manual-panel {
+    aside, .workspace, .card, .summary, .manual-panel, .side-panel {
       border: 1px solid var(--line);
       background: rgba(17, 22, 26, .82);
       box-shadow: var(--shadow);
@@ -104,6 +104,8 @@
       padding: 16px;
       position: sticky;
       top: 14px;
+      display: grid;
+      gap: 16px;
     }
 
     .workspace {
@@ -115,6 +117,13 @@
       margin: 0 0 12px;
       font-size: 18px;
       letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      letter-spacing: .02em;
+      color: var(--text);
     }
 
     .field {
@@ -171,6 +180,23 @@
       border: 1px solid var(--line);
     }
 
+    button.danger {
+      color: var(--text);
+      background: #2a1414;
+      border: 1px solid rgba(239, 113, 106, .4);
+    }
+
+    button:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+
+    button.small {
+      min-height: 32px;
+      padding: 0 10px;
+      font-size: 12px;
+    }
+
     .tabs {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -204,12 +230,37 @@
     .hint {
       border-top: 1px solid var(--line);
       padding-top: 14px;
-      margin-top: 14px;
+      margin-top: 0;
+    }
+
+    .alerts {
+      display: grid;
+      gap: 8px;
+    }
+
+    .alert {
+      border-radius: 6px;
+      padding: 9px 11px;
+      font-size: 12.5px;
+      line-height: 1.4;
+      border: 1px solid;
+    }
+
+    .alert.warn {
+      color: var(--amber);
+      border-color: rgba(229, 179, 91, .35);
+      background: rgba(229, 179, 91, .08);
+    }
+
+    .alert.bad {
+      color: var(--red);
+      border-color: rgba(239, 113, 106, .35);
+      background: rgba(239, 113, 106, .08);
     }
 
     .toolbar {
       display: grid;
-      grid-template-columns: minmax(150px, 1fr) minmax(100px, .6fr) auto auto;
+      grid-template-columns: minmax(150px, 1fr) minmax(100px, .6fr) auto auto auto;
       gap: 10px;
       padding: 14px;
       border-bottom: 1px solid var(--line);
@@ -376,6 +427,253 @@
       font-size: 12px;
     }
 
+    /* ---- Secciones nuevas: sensibilidad / historial / comparador ---- */
+
+    .extra-section {
+      border-radius: 8px;
+      margin: 0 14px 14px;
+      border: 1px solid var(--line);
+      background: rgba(13, 18, 21, .5);
+      overflow: hidden;
+    }
+
+    .extra-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .extra-header p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .extra-body {
+      padding: 14px;
+    }
+
+    .sens-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+    }
+
+    .sens-table th, .sens-table td {
+      padding: 8px 6px;
+      text-align: center;
+      border: 1px solid rgba(224,232,224,.08);
+      white-space: nowrap;
+    }
+
+    .sens-table thead th {
+      color: var(--muted);
+      font-weight: 700;
+      background: rgba(8,11,13,.4);
+    }
+
+    .sens-table th:first-child {
+      color: var(--muted);
+      background: rgba(8,11,13,.4);
+    }
+
+    .sens-table td.self {
+      outline: 2px solid var(--text);
+      outline-offset: -2px;
+      font-weight: 800;
+    }
+
+    .sens-legend {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    .sens-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+    }
+
+    .history-list, .compare-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .ticker-group {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(13, 18, 21, .35);
+    }
+
+    .ticker-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      background: rgba(8, 11, 13, .4);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ticker-group-header .tname {
+      font-weight: 800;
+      font-size: 13.5px;
+    }
+
+    .ticker-group-header .tname span {
+      color: var(--muted);
+      font-weight: 500;
+      margin-left: 6px;
+      font-size: 11.5px;
+    }
+
+    .ticker-group-items {
+      display: grid;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    .evolution-wrap {
+      padding: 14px 16px 6px;
+      border-top: 1px solid var(--line);
+      background: rgba(8, 11, 13, .25);
+    }
+
+    .evolution-legend {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 6px;
+      font-size: 11.5px;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    .evolution-legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .evolution-legend .ln {
+      width: 14px;
+      height: 2px;
+      display: inline-block;
+      border-radius: 2px;
+    }
+
+    .evolution-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .history-item, .compare-item {
+      display: grid;
+      grid-template-columns: auto minmax(0,1fr) auto auto auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #0d1215;
+      font-size: 13px;
+    }
+
+    .history-item .name, .compare-item .name {
+      font-weight: 700;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .history-item .meta, .compare-item .meta {
+      color: var(--muted);
+      font-size: 11.5px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .tag.up { background: rgba(82,210,115,.15); color: var(--green); }
+    .tag.down { background: rgba(239,113,106,.15); color: var(--red); }
+    .tag.flat { background: rgba(152,165,158,.15); color: var(--muted); }
+
+    .empty-state {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 18px 10px;
+      border: 1px dashed var(--line);
+      border-radius: 6px;
+    }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .compare-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #0d1215;
+      position: relative;
+    }
+
+    .compare-card button.remove {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      min-height: 24px;
+      width: 24px;
+      padding: 0;
+      background: #1d262b;
+      color: var(--muted);
+      font-size: 12px;
+      border-radius: 5px;
+    }
+
+    .compare-card .cname {
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 8px;
+      padding-right: 24px;
+    }
+
+    .compare-card .crow {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: var(--muted);
+      padding: 4px 0;
+      border-top: 1px solid rgba(224,232,224,.07);
+    }
+
+    .compare-card .crow strong { color: var(--text); }
+
     @media (max-width: 1120px) {
       header, .layout, .analysis {
         grid-template-columns: 1fr;
@@ -408,6 +706,10 @@
       canvas {
         height: 300px;
       }
+
+      .sens-table {
+        font-size: 11px;
+      }
     }
   </style>
 </head>
@@ -416,50 +718,54 @@
     <header>
       <div>
         <h1>Calculadora manual de valor intrinseco</h1>
-        <p class="subtitle">Sin API, sin base pagada y sin datos guardados. Copia de Yahoo Finance los datos principales, pégalos aquí y la calculadora hace DCF, múltiplos de FCF, comparables y una explicación sencilla.</p>
+        <p class="subtitle">Sin API y sin base pagada. Copia de Yahoo Finance los datos principales, pégalos aquí y la calculadora hace DCF, múltiplos de FCF, comparables, sensibilidad y guarda tu historial de análisis en este navegador.</p>
       </div>
       <div class="status"><span class="dot"></span><span id="dataStatus">Modo manual</span></div>
     </header>
 
     <div class="layout">
       <aside>
-        <h2>Supuestos</h2>
-        <div class="tabs" aria-label="Modo de valoracion">
-          <button class="tab active" data-mode="base">Base</button>
-          <button class="tab" data-mode="optimista">Optimista</button>
-          <button class="tab" data-mode="conservador">Conservador</button>
+        <div>
+          <h2>Supuestos</h2>
+          <div class="tabs" aria-label="Modo de valoracion">
+            <button class="tab active" data-mode="base">Base</button>
+            <button class="tab" data-mode="optimista">Optimista</button>
+            <button class="tab" data-mode="conservador">Conservador</button>
+          </div>
+
+          <div class="field">
+            <label for="growth">Crecimiento FCF anual</label>
+            <input id="growth" type="number" min="-20" max="40" step=".1" value="8.0" />
+          </div>
+          <div class="field">
+            <label for="discount">Tasa de descuento</label>
+            <input id="discount" type="number" min="3" max="25" step=".1" value="10.0" />
+          </div>
+          <div class="field">
+            <label for="terminal">Crecimiento terminal</label>
+            <input id="terminal" type="number" min="0" max="6" step=".1" value="2.5" />
+          </div>
+          <div class="field">
+            <label for="fcfMultiple">Multiplo FCF justo</label>
+            <input id="fcfMultiple" type="number" min="3" max="80" step=".5" value="20" />
+          </div>
+          <div class="field">
+            <label for="peerMultiple">Multiplo comparable justo</label>
+            <input id="peerMultiple" type="number" min="3" max="80" step=".5" value="24" />
+          </div>
+          <div class="field">
+            <label for="margin">Margen de seguridad deseado</label>
+            <input id="margin" type="number" min="0" max="70" step="1" value="20" />
+          </div>
+          <button id="reset" class="secondary" type="button">Restablecer supuestos</button>
+
+          <div class="hint">
+            <strong>De Yahoo Finance</strong><br />
+            Precio: página Summary. Ingresos, utilidad neta y acciones: Financials. FCF: Cash Flow. Deuda y efectivo: Balance Sheet. Los importes van en millones.
+          </div>
         </div>
 
-        <div class="field">
-          <label for="growth">Crecimiento FCF anual</label>
-          <input id="growth" type="number" min="-20" max="40" step=".1" value="8.0" />
-        </div>
-        <div class="field">
-          <label for="discount">Tasa de descuento</label>
-          <input id="discount" type="number" min="3" max="25" step=".1" value="10.0" />
-        </div>
-        <div class="field">
-          <label for="terminal">Crecimiento terminal</label>
-          <input id="terminal" type="number" min="0" max="6" step=".1" value="2.5" />
-        </div>
-        <div class="field">
-          <label for="fcfMultiple">Multiplo FCF justo</label>
-          <input id="fcfMultiple" type="number" min="3" max="80" step=".5" value="20" />
-        </div>
-        <div class="field">
-          <label for="peerMultiple">Multiplo comparable justo</label>
-          <input id="peerMultiple" type="number" min="3" max="80" step=".5" value="24" />
-        </div>
-        <div class="field">
-          <label for="margin">Margen de seguridad deseado</label>
-          <input id="margin" type="number" min="0" max="70" step="1" value="20" />
-        </div>
-        <button id="reset" class="secondary" type="button">Restablecer supuestos</button>
-
-        <div class="hint">
-          <strong>De Yahoo Finance</strong><br />
-          Precio: página Summary. Ingresos, utilidad neta y acciones: Financials. FCF: Cash Flow. Deuda y efectivo: Balance Sheet. Los importes van en millones.
-        </div>
+        <div id="alerts" class="alerts"></div>
       </aside>
 
       <section class="workspace">
@@ -481,6 +787,7 @@
             </select>
           </div>
           <a class="button-link secondary" id="yahooLink" href="https://finance.yahoo.com/quote/AAPL" target="_blank" rel="noreferrer">Abrir Yahoo</a>
+          <button id="saveSnapshot" class="secondary" type="button">Guardar en historial</button>
           <button id="calculate" type="button">Calcular</button>
         </div>
 
@@ -595,6 +902,57 @@
             <p class="fineprint" style="margin-top:14px">No es recomendacion financiera. Los resultados dependen de los datos pegados y de los supuestos.</p>
           </section>
         </div>
+
+        <!-- Sensibilidad -->
+        <div class="extra-section">
+          <div class="extra-header">
+            <div>
+              <h2 style="margin:0">Analisis de sensibilidad</h2>
+              <p>Valor intrinseco por accion al variar la tasa de descuento (filas) y el crecimiento terminal (columnas). Tu combinacion actual de supuestos esta marcada.</p>
+            </div>
+          </div>
+          <div class="extra-body">
+            <div style="overflow-x:auto">
+              <table class="sens-table" id="sensTable"></table>
+            </div>
+            <div class="sens-legend">
+              <span><i class="swatch" style="background:var(--red)"></i> Por debajo del precio actual</span>
+              <span><i class="swatch" style="background:var(--amber)"></i> Cerca del precio actual</span>
+              <span><i class="swatch" style="background:var(--green)"></i> Por arriba del precio actual</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comparador -->
+        <div class="extra-section">
+          <div class="extra-header">
+            <div>
+              <h2 style="margin:0">Comparador de empresas</h2>
+              <p>Guarda el calculo actual para compararlo lado a lado con otras empresas que analices.</p>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button id="addToCompare" class="secondary small" type="button">Agregar empresa actual</button>
+              <button id="clearCompare" class="danger small" type="button">Vaciar</button>
+            </div>
+          </div>
+          <div class="extra-body">
+            <div id="compareWrap"></div>
+          </div>
+        </div>
+
+        <!-- Historial -->
+        <div class="extra-section">
+          <div class="extra-header">
+            <div>
+              <h2 style="margin:0">Historial de analisis</h2>
+              <p>Cada vez que guardas un calculo queda registrado aqui, junto con la fecha y los supuestos usados. Se guarda en este navegador.</p>
+            </div>
+            <button id="clearHistory" class="danger small" type="button">Borrar historial</button>
+          </div>
+          <div class="extra-body">
+            <div id="historyWrap"></div>
+          </div>
+        </div>
       </section>
     </div>
   </main>
@@ -607,7 +965,9 @@
       "sectorInput", "sourceInput", "price", "quoteNote", "intrinsic", "upside",
       "mosNote", "quality", "qualityNote", "companyName", "plainSummary",
       "verdict", "methodRows", "fcfUsed", "netDebt", "shares", "sector", "pills",
-      "chart", "growth", "discount", "terminal", "fcfMultiple", "peerMultiple", "margin"
+      "chart", "growth", "discount", "terminal", "fcfMultiple", "peerMultiple", "margin",
+      "alerts", "sensTable", "saveSnapshot", "historyWrap", "clearHistory",
+      "compareWrap", "addToCompare", "clearCompare"
     ];
     const els = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
 
@@ -657,8 +1017,10 @@
       };
     }
 
-    function calculate(stock) {
-      const s = getInputs();
+    // Calculo de valoracion reutilizable, recibe overrides opcionales de discount/terminal
+    // para poder reusarlo en la tabla de sensibilidad sin tocar los inputs reales.
+    function calculate(stock, overrides) {
+      const s = Object.assign({}, getInputs(), overrides || {});
       const fcf = Math.max(stock.fcf, 1);
       const shares = Math.max(stock.shares, 1);
       const netDebt = stock.debt - stock.cash;
@@ -746,6 +1108,398 @@
       });
     }
 
+    // ---------- Validaciones / alertas ----------
+    function renderAlerts(stock, result) {
+      const s = result.s;
+      const msgs = [];
+
+      if (s.terminal >= s.discount) {
+        msgs.push({ type: "bad", text: "El crecimiento terminal es mayor o igual a la tasa de descuento. La formula de valor terminal se vuelve invalida (denominador negativo o cercano a cero). Baja el crecimiento terminal o sube la tasa de descuento." });
+      } else if (s.discount - s.terminal < 0.02) {
+        msgs.push({ type: "warn", text: "La diferencia entre tasa de descuento y crecimiento terminal es muy chica (menor a 2 puntos). El valor terminal puede dispararse de forma poco realista." });
+      }
+
+      if (stock.fcf <= 0) {
+        msgs.push({ type: "bad", text: "El Free Cash Flow capturado es cero o negativo. El modelo de DCF y el multiplo de FCF pierden sentido con este dato." });
+      }
+
+      if (stock.netIncome <= 0) {
+        msgs.push({ type: "warn", text: "La utilidad neta es cero o negativa, asi que el multiplo comparable esta usando el FCF como base en su lugar." });
+      }
+
+      if (stock.price <= 0) {
+        msgs.push({ type: "warn", text: "No hay precio actual capturado, asi que el potencial y el margen de seguridad no se pueden calcular todavia." });
+      }
+
+      if (s.growth > 0.25) {
+        msgs.push({ type: "warn", text: "El crecimiento de FCF supuesto es mayor a 25% anual sostenido por 5 anos. Es un supuesto agresivo, revisa si es realista para esta empresa." });
+      }
+
+      const netDebtToFcf = stock.fcf > 0 ? result.netDebt / stock.fcf : 0;
+      if (netDebtToFcf > 5) {
+        msgs.push({ type: "warn", text: `La deuda neta equivale a mas de ${fmtNum(netDebtToFcf)} veces el FCF anual. Apalancamiento alto a considerar.` });
+      }
+
+      els.alerts.innerHTML = msgs.length
+        ? msgs.map(m => `<div class="alert ${m.type}">${m.text}</div>`).join("")
+        : `<div class="alert" style="border-color:rgba(82,210,115,.3);color:var(--green);background:rgba(82,210,115,.07)">Los supuestos actuales no muestran inconsistencias evidentes.</div>`;
+    }
+
+    // ---------- Sensibilidad ----------
+    function renderSensitivity(stock, baseInputs) {
+      const discountSteps = [-2, -1, 0, 1, 2].map(d => baseInputs.discount + d / 100);
+      const terminalSteps = [-1, -0.5, 0, 0.5, 1].map(d => baseInputs.terminal + d / 100);
+
+      const rows = discountSteps.map(discount => {
+        return terminalSteps.map(terminal => {
+          if (terminal >= discount || discount <= 0) return null;
+          const r = calculate(stock, { discount, terminal });
+          return r.intrinsic;
+        });
+      });
+
+      const allValues = rows.flat().filter(v => v !== null && Number.isFinite(v));
+      const price = stock.price || 0;
+
+      function colorFor(value) {
+        if (value === null) return "color:var(--muted);background:transparent";
+        if (!price) return "";
+        const diffPct = (value / price) - 1;
+        if (diffPct < -0.05) return `background:rgba(239,113,106,${Math.min(.45, .12 + Math.abs(diffPct))});color:#fff`;
+        if (diffPct > 0.05) return `background:rgba(82,210,115,${Math.min(.45, .12 + diffPct)});color:#fff`;
+        return "background:rgba(229,179,91,.22);color:#fff";
+      }
+
+      let html = "<thead><tr><th>Desc. \\ Term.</th>";
+      terminalSteps.forEach(t => { html += `<th>${fmtNum(t * 100)}%</th>`; });
+      html += "</tr></thead><tbody>";
+
+      discountSteps.forEach((d, ri) => {
+        html += `<tr><th>${fmtNum(d * 100)}%</th>`;
+        terminalSteps.forEach((t, ci) => {
+          const value = rows[ri][ci];
+          const isSelf = Math.abs(d - baseInputs.discount) < 0.0001 && Math.abs(t - baseInputs.terminal) < 0.0001;
+          const style = colorFor(value);
+          const content = value === null ? "—" : fmtMoney(value, stock.currency);
+          html += `<td class="${isSelf ? 'self' : ''}" style="${style}">${content}</td>`;
+        });
+        html += "</tr>";
+      });
+      html += "</tbody>";
+      els.sensTable.innerHTML = html;
+    }
+
+    // ---------- Historial (persistente via window.storage) ----------
+    let historyCache = [];
+
+    async function loadHistory() {
+      try {
+        const result = await window.storage.get("valuation-history");
+        historyCache = result && result.value ? JSON.parse(result.value) : [];
+      } catch (e) {
+        historyCache = [];
+      }
+      renderHistory();
+    }
+
+    async function saveHistory() {
+      try {
+        await window.storage.set("valuation-history", JSON.stringify(historyCache));
+      } catch (e) {
+        console.error("No se pudo guardar el historial", e);
+      }
+    }
+
+    function renderHistory() {
+      if (!historyCache.length) {
+        els.historyWrap.innerHTML = `<div class="empty-state">Todavia no has guardado ningun analisis. Calcula una empresa y usa "Guardar en historial".</div>`;
+        return;
+      }
+
+      // Agrupamos por ticker, cada grupo ordenado del mas reciente al mas antiguo
+      const groups = {};
+      historyCache.forEach(entry => {
+        if (!groups[entry.ticker]) groups[entry.ticker] = [];
+        groups[entry.ticker].push(entry);
+      });
+      Object.values(groups).forEach(list => list.sort((a, b) => b.ts - a.ts));
+
+      // Ordenamos los grupos por su registro mas reciente
+      const tickerOrder = Object.keys(groups).sort((a, b) => groups[b][0].ts - groups[a][0].ts);
+
+      const html = tickerOrder.map(ticker => {
+        const entries = groups[ticker];
+        const itemsHtml = entries.map((entry, idx) => {
+          const prev = entries[idx + 1]; // el siguiente en la lista es el anterior en el tiempo
+          let tagHtml = `<span class="tag flat">primer registro</span>`;
+          if (prev) {
+            const diff = entry.intrinsic - prev.intrinsic;
+            const pct = prev.intrinsic ? (diff / prev.intrinsic) * 100 : 0;
+            if (Math.abs(pct) < 0.5) {
+              tagHtml = `<span class="tag flat">sin cambio vs anterior</span>`;
+            } else if (pct > 0) {
+              tagHtml = `<span class="tag up">+${fmtNum(pct)}% vs anterior</span>`;
+            } else {
+              tagHtml = `<span class="tag down">${fmtNum(pct)}% vs anterior</span>`;
+            }
+          }
+          const date = new Date(entry.ts);
+          const dateStr = date.toLocaleDateString("es-MX", { day: "2-digit", month: "short", year: "numeric" });
+          return `
+            <div class="history-item">
+              <div style="font-weight:800;color:var(--muted)">${entry.ticker}</div>
+              <div>
+                <div class="name">${entry.name}</div>
+                <div class="meta">${dateStr} · Precio ${fmtMoney(entry.price, entry.currency)} · Valor ${fmtMoney(entry.intrinsic, entry.currency)}</div>
+              </div>
+              ${tagHtml}
+              <button class="secondary small" data-load="${entry.id}" type="button">Cargar</button>
+              <button class="danger small" data-del="${entry.id}" type="button">Borrar</button>
+            </div>`;
+        }).join("");
+
+        const latest = entries[0];
+        const evolutionHtml = entries.length > 1
+          ? `<div class="evolution-wrap">${buildEvolutionChart(entries, latest.currency)}</div>`
+          : "";
+
+        return `
+          <div class="ticker-group">
+            <div class="ticker-group-header">
+              <div class="tname">${ticker}<span>${latest.name} · ${entries.length} ${entries.length === 1 ? "registro" : "registros"}</span></div>
+            </div>
+            <div class="ticker-group-items">${itemsHtml}</div>
+            ${evolutionHtml}
+          </div>`;
+      }).join("");
+
+      els.historyWrap.innerHTML = `<div class="history-list">${html}</div>`;
+
+      els.historyWrap.querySelectorAll("[data-load]").forEach(btn => {
+        btn.addEventListener("click", () => loadHistoryEntry(btn.dataset.load));
+      });
+      els.historyWrap.querySelectorAll("[data-del]").forEach(btn => {
+        btn.addEventListener("click", () => deleteHistoryEntry(btn.dataset.del));
+      });
+    }
+
+    // Construye un mini grafico de lineas en SVG mostrando la evolucion
+    // del valor intrinseco y del precio para los registros de un mismo ticker.
+    function buildEvolutionChart(entries, currency) {
+      const chrono = [...entries].sort((a, b) => a.ts - b.ts); // mas antiguo primero
+      const w = 760, h = 200;
+      const padL = 64, padR = 16, padT = 18, padB = 30;
+      const plotW = w - padL - padR;
+      const plotH = h - padT - padB;
+
+      const allValues = chrono.flatMap(e => [e.intrinsic, e.price]).filter(v => Number.isFinite(v));
+      const minV = Math.min(...allValues, 0);
+      const maxV = Math.max(...allValues, 1) * 1.08;
+      const range = Math.max(maxV - minV, 0.01);
+
+      const n = chrono.length;
+      const xFor = i => padL + (n === 1 ? plotW / 2 : (plotW * i) / (n - 1));
+      const yFor = v => padT + plotH - ((v - minV) / range) * plotH;
+
+      const intrinsicPts = chrono.map((e, i) => [xFor(i), yFor(e.intrinsic)]);
+      const pricePts = chrono.map((e, i) => [xFor(i), yFor(e.price)]);
+
+      const toPath = pts => pts.map((p, i) => `${i === 0 ? "M" : "L"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(" ");
+
+      // lineas de referencia horizontales (3 niveles)
+      const gridLines = [0, 0.5, 1].map(t => {
+        const y = padT + plotH * t;
+        const value = maxV - range * t;
+        return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${w - padR}" y2="${y.toFixed(1)}" stroke="rgba(224,232,224,.1)" stroke-width="1" />
+                <text x="${padL - 8}" y="${(y + 4).toFixed(1)}" fill="#6f7b75" font-size="10.5" text-anchor="end" font-family="Inter, sans-serif">${fmtMoney(value, currency)}</text>`;
+      }).join("");
+
+      const xLabels = chrono.map((e, i) => {
+        const date = new Date(e.ts);
+        const label = date.toLocaleDateString("es-MX", { day: "2-digit", month: "short" });
+        return `<text x="${xFor(i).toFixed(1)}" y="${h - 8}" fill="#6f7b75" font-size="10.5" text-anchor="middle" font-family="Inter, sans-serif">${label}</text>`;
+      }).join("");
+
+      const intrinsicDots = intrinsicPts.map((p, i) => `
+        <circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.5" fill="#52d273" stroke="#0d1215" stroke-width="1.5">
+          <title>${fmtMoney(chrono[i].intrinsic, currency)}</title>
+        </circle>`).join("");
+
+      const priceDots = pricePts.map((p, i) => `
+        <circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3.5" fill="#e5b35b" stroke="#0d1215" stroke-width="1.5">
+          <title>${fmtMoney(chrono[i].price, currency)}</title>
+        </circle>`).join("");
+
+      const svg = `
+        <svg class="evolution-svg" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
+          ${gridLines}
+          <path d="${toPath(pricePts)}" fill="none" stroke="#e5b35b" stroke-width="2" stroke-dasharray="4 3" />
+          <path d="${toPath(intrinsicPts)}" fill="none" stroke="#52d273" stroke-width="2.2" />
+          ${priceDots}
+          ${intrinsicDots}
+          ${xLabels}
+        </svg>`;
+
+      const legend = `
+        <div class="evolution-legend">
+          <span><i class="ln" style="background:#52d273"></i> Valor intrinseco</span>
+          <span><i class="ln" style="background:#e5b35b;border-top:2px dashed #e5b35b;height:0"></i> Precio</span>
+        </div>`;
+
+      return legend + svg;
+    }
+
+    function loadHistoryEntry(id) {
+      const entry = historyCache.find(e => e.id === id);
+      if (!entry) return;
+      els.company.value = entry.name;
+      els.currency.value = entry.currency;
+      els.priceInput.value = entry.price;
+      els.revenueInput.value = entry.revenue;
+      els.fcfInput.value = entry.fcf;
+      els.netIncomeInput.value = entry.netIncome;
+      els.cashInput.value = entry.cash;
+      els.debtInput.value = entry.debt;
+      els.sharesInput.value = entry.shares;
+      els.peInput.value = entry.pe;
+      els.evEbitdaInput.value = entry.evEbitda;
+      els.grossMarginInput.value = entry.grossMargin;
+      els.sectorInput.value = entry.sector;
+      els.sourceInput.value = entry.note;
+      els.growth.value = entry.assumptions.growth * 100;
+      els.discount.value = entry.assumptions.discount * 100;
+      els.terminal.value = entry.assumptions.terminal * 100;
+      els.fcfMultiple.value = entry.assumptions.fcfMultiple;
+      els.peerMultiple.value = entry.assumptions.peerMultiple;
+      els.margin.value = entry.assumptions.margin * 100;
+      render();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    async function deleteHistoryEntry(id) {
+      historyCache = historyCache.filter(e => e.id !== id);
+      await saveHistory();
+      renderHistory();
+    }
+
+    async function clearAllHistory() {
+      if (!confirm("¿Borrar todo el historial guardado en este navegador?")) return;
+      historyCache = [];
+      await saveHistory();
+      renderHistory();
+    }
+
+    async function saveCurrentSnapshot() {
+      const stock = readManualStock();
+      const result = calculate(stock);
+      const entry = {
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        ts: Date.now(),
+        ticker: tickerFromCompany(),
+        name: stock.name,
+        currency: stock.currency,
+        price: stock.price,
+        revenue: stock.revenue,
+        fcf: stock.fcf,
+        netIncome: stock.netIncome,
+        cash: stock.cash,
+        debt: stock.debt,
+        shares: stock.shares,
+        pe: stock.pe,
+        evEbitda: stock.evEbitda,
+        grossMargin: stock.grossMargin,
+        sector: stock.sector,
+        note: stock.note,
+        assumptions: getInputs(),
+        intrinsic: result.intrinsic,
+        upside: result.upside
+      };
+      historyCache.push(entry);
+      await saveHistory();
+      renderHistory();
+      els.saveSnapshot.textContent = "Guardado ✓";
+      setTimeout(() => { els.saveSnapshot.textContent = "Guardar en historial"; }, 1600);
+    }
+
+    // ---------- Comparador ----------
+    let compareCache = [];
+
+    async function loadCompare() {
+      try {
+        const result = await window.storage.get("valuation-compare");
+        compareCache = result && result.value ? JSON.parse(result.value) : [];
+      } catch (e) {
+        compareCache = [];
+      }
+      renderCompare();
+    }
+
+    async function saveCompare() {
+      try {
+        await window.storage.set("valuation-compare", JSON.stringify(compareCache));
+      } catch (e) {
+        console.error("No se pudo guardar el comparador", e);
+      }
+    }
+
+    function renderCompare() {
+      if (!compareCache.length) {
+        els.compareWrap.innerHTML = `<div class="empty-state">Agrega la empresa que tienes calculada para empezar a comparar contra otras.</div>`;
+        return;
+      }
+      const html = compareCache.map(item => {
+        const verdictColor = item.upside < 0 ? "var(--red)" : (item.price > item.buyBelow ? "var(--amber)" : "var(--green)");
+        return `
+          <div class="compare-card">
+            <button class="remove" data-remove="${item.id}" type="button">✕</button>
+            <div class="cname">${item.ticker} <span style="font-weight:400;color:var(--muted);font-size:12px">${item.name}</span></div>
+            <div class="crow"><span>Precio</span><strong>${fmtMoney(item.price, item.currency)}</strong></div>
+            <div class="crow"><span>Valor intrinseco</span><strong>${fmtMoney(item.intrinsic, item.currency)}</strong></div>
+            <div class="crow"><span>Potencial</span><strong style="color:${verdictColor}">${item.upside >= 0 ? "+" : ""}${fmtNum(item.upside * 100)}%</strong></div>
+            <div class="crow"><span>Sector</span><strong>${item.sector}</strong></div>
+          </div>`;
+      }).join("");
+      els.compareWrap.innerHTML = `<div class="compare-grid">${html}</div>`;
+
+      els.compareWrap.querySelectorAll("[data-remove]").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          compareCache = compareCache.filter(c => c.id !== btn.dataset.remove);
+          await saveCompare();
+          renderCompare();
+        });
+      });
+    }
+
+    async function addCurrentToCompare() {
+      const stock = readManualStock();
+      const result = calculate(stock);
+      const ticker = tickerFromCompany();
+
+      // Evita duplicar el mismo ticker, lo reemplaza con datos frescos
+      compareCache = compareCache.filter(c => c.ticker !== ticker);
+      compareCache.push({
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        ticker,
+        name: stock.name,
+        currency: stock.currency,
+        price: stock.price,
+        intrinsic: result.intrinsic,
+        upside: result.upside,
+        buyBelow: result.buyBelow,
+        sector: stock.sector
+      });
+      await saveCompare();
+      renderCompare();
+    }
+
+    async function clearCompareAll() {
+      if (!confirm("¿Vaciar el comparador?")) return;
+      compareCache = [];
+      await saveCompare();
+      renderCompare();
+    }
+
+    // ---------- Render principal ----------
     function render() {
       updateYahooLink();
       const stock = readManualStock();
@@ -791,6 +1545,8 @@
       ].map(text => `<span class="pill">${text}</span>`).join("");
 
       renderChart(stock, result);
+      renderAlerts(stock, result);
+      renderSensitivity(stock, result.s);
     }
 
     document.querySelectorAll(".tab").forEach(tab => {
@@ -817,8 +1573,16 @@
       [els.growth.value, els.discount.value, els.terminal.value, els.fcfMultiple.value, els.peerMultiple.value, els.margin.value] = [8, 10, 2.5, 20, 24, 20];
       render();
     });
+    els.saveSnapshot.addEventListener("click", saveCurrentSnapshot);
+    els.clearHistory.addEventListener("click", clearAllHistory);
+    els.addToCompare.addEventListener("click", addCurrentToCompare);
+    els.clearCompare.addEventListener("click", clearCompareAll);
+
     window.addEventListener("resize", render);
+
     render();
+    loadHistory();
+    loadCompare();
   </script>
 </body>
 </html>
